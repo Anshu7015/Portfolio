@@ -51,7 +51,7 @@ export function Projects() {
             Projects
           </h2>
           <p className="text-muted-foreground max-w-xl text-base md:text-lg leading-relaxed">
-            A curated selection of software systems, focused on backend functionality, APIs, and structured logic.
+            A selection of projects I&apos;ve built across backend systems, APIs, web applications, and practical development utilities.
           </p>
         </div>
 

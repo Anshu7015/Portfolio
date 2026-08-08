@@ -72,6 +72,7 @@ export function Navbar() {
         {/* Understated Typography Brand */}
         <a
           href="#"
+          aria-label="Anshu Mehra Home"
           className="text-sm font-semibold tracking-widest text-foreground hover:text-primary transition-colors uppercase"
         >
           Anshu Mehra
