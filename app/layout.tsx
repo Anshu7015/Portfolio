@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Anshu Mehra | Portfolio",
-  description: "Professional developer portfolio for Anshu Mehra.",
+  title: "Anshu Mehra — Backend Developer",
+  description: "Portfolio of Anshu Mehra, a backend-focused software developer building APIs, backend systems, and real-world applications.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

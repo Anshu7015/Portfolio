@@ -4,10 +4,10 @@
  */
 
 export const easings = {
-  easeInOut: [0.4, 0, 0.2, 1],
-  easeOut: [0, 0, 0.2, 1],
-  easeIn: [0.4, 0, 1, 1],
-  premiumEase: [0.16, 1, 0.3, 1], // Premium expo-like custom curve
+  easeInOut: [0.4, 0, 0.2, 1] as const,
+  easeOut: [0, 0, 0.2, 1] as const,
+  easeIn: [0.4, 0, 1, 1] as const,
+  premiumEase: [0.16, 1, 0.3, 1] as const, // Premium expo-like custom curve
 };
 
 export const transitions = {
