@@ -97,11 +97,12 @@ export function Navbar() {
       )}
     >
       <Container className="flex items-center justify-between">
-        {/* Understated Typography Brand */}
+        {/* Signature wordmark — Satisfy handwritten font */}
         <a
           href="#"
           aria-label="Anshu Mehra Home"
-          className="text-sm font-semibold tracking-widest text-foreground hover:text-primary transition-colors uppercase focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
+          className="text-foreground hover:text-primary transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded leading-none"
+          style={{ fontFamily: "var(--font-satisfy)", fontSize: "1.6rem", fontWeight: 400 }}
         >
           Anshu Mehra
         </a>

@@ -52,6 +52,14 @@ export function Experience() {
       ? Math.max(0, dotCentres[activeIndex] - dotCentres[0])
       : 0;
 
+  // ── Gray rail height: first dot centre → last dot centre ──
+  // Computed from real DOM positions so it terminates exactly at the last dot.
+  const lastIndex = internships.length - 1;
+  const grayRailHeight =
+    dotCentres.length > lastIndex && dotCentres.length > 0
+      ? Math.max(0, dotCentres[lastIndex] - dotCentres[0])
+      : 0;
+
   // ── Framer Motion variants for reveal ──
   const containerVariants = {
     hidden: {},
@@ -110,9 +118,14 @@ export function Experience() {
             className="relative"
           >
             {/* ── Layer 1: permanent gray background rail ── */}
+            {/* Before DOM is measured, falls back to bottom-[5px] so rail is visible immediately. */}
+            {/* Once dotCentres are computed, switches to measured height ending exactly at last dot. */}
             <div
               aria-hidden="true"
-              className="absolute left-[4px] top-[5px] bottom-[5px] w-[2px] bg-zinc-800/80 pointer-events-none rounded-full"
+              className={`absolute left-[4px] top-[5px] w-[2px] bg-zinc-800/80 pointer-events-none rounded-full ${
+                dotCentres.length === 0 ? "bottom-[5px]" : ""
+              }`}
+              style={dotCentres.length > 0 ? { height: grayRailHeight } : undefined}
             />
 
             {/* ── Layer 2: animated blue progress rail ── */}
