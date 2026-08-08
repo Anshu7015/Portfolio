@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "../layout/container";
 import { Section } from "../layout/section";
@@ -9,20 +9,59 @@ import { internships } from "@/data/experience";
 export function Experience() {
   const isReduced = useReducedMotion();
 
+  // ── Active index: which internship the user is currently interacting with ──
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  // ── Refs for DOM measurement ──
+  // containerRef: the relative wrapper that owns both rails
+  const containerRef = useRef<HTMLDivElement>(null);
+  // articleRefs: one ref per internship article
+  const articleRefs = useRef<(HTMLElement | null)[]>([]);
+
+  // ── Dot Y-centres relative to the containerRef top ──
+  // dotCentres[i] = px offset from containerRef top to centre of dot i
+  const [dotCentres, setDotCentres] = useState<number[]>([]);
+
+  // Measure dot centres whenever layout may change
+  const measureDots = useCallback(() => {
+    if (!containerRef.current) return;
+    const containerTop = containerRef.current.getBoundingClientRect().top;
+    const centres = articleRefs.current.map((el) => {
+      if (!el) return 0;
+      const dotEl = el.querySelector<HTMLElement>("[data-timeline-dot]");
+      if (!dotEl) return 0;
+      const rect = dotEl.getBoundingClientRect();
+      // centre of dot relative to container top (add containerRef.scrollTop for scroll)
+      return rect.top - containerTop + rect.height / 2;
+    });
+    setDotCentres(centres);
+  }, []);
+
+  useEffect(() => {
+    measureDots();
+    window.addEventListener("resize", measureDots);
+    return () => window.removeEventListener("resize", measureDots);
+  }, [measureDots]);
+
+  // ── Progress rail height ──
+  // When activeIndex is null → height 0 (rail invisible)
+  // When activeIndex is i   → height = dotCentres[i] - dotCentres[0]
+  // (from first dot centre to active dot centre)
+  const progressHeight =
+    activeIndex !== null && dotCentres.length > activeIndex && dotCentres.length > 0
+      ? Math.max(0, dotCentres[activeIndex] - dotCentres[0])
+      : 0;
+
+  // ── Framer Motion variants for reveal ──
   const containerVariants = {
     hidden: {},
     visible: {
-      transition: {
-        staggerChildren: isReduced ? 0 : 0.15,
-      },
+      transition: { staggerChildren: isReduced ? 0 : 0.15 },
     },
   };
 
   const itemVariants = {
-    hidden: {
-      opacity: 0,
-      y: isReduced ? 0 : 20,
-    },
+    hidden: { opacity: 0, y: isReduced ? 0 : 20 },
     visible: {
       opacity: 1,
       y: 0,
@@ -49,29 +88,19 @@ export function Experience() {
           </div>
 
           {/*
-            Timeline geometry:
+            Timeline geometry
             ─────────────────
-            The outer wrapper is `relative` and holds ONE single vertical rail.
+            Dot:  h-2.5 w-2.5 = 10 px square.  Centre = 5 px from article left.
+            Rail: left-[4px] w-[2px]  → centre = 4px + 1px = 5 px.  ✓ aligned.
 
-            Dot diameter  = h-2.5 = 10 px  →  radius = 5 px
-            Rail width    = w-px  = 1 px
+            Gray rail   : top-[5px] bottom-[5px]
+                          starts at first dot centre, ends at last dot centre.
 
-            The dot sits at `left-0 top-[1px]` inside each article.
-            Its horizontal centre = 0 + 5 px = 5 px from article left edge.
-
-            The rail must share that same horizontal centre:
-              left-[4px]  (4 px left edge + 0.5 px half-width ≈ 4.5 px centre)
-            Close enough; using left-[4.5px] is not a valid Tailwind value, so
-            we use left-[4px] with w-[2px] so its centre = 5 px exactly.
-
-            Rail vertical span:
-              top-[5px]    → starts at centre of first dot
-              bottom-[5px] → ends   at centre of last dot
-
-            The inner flex-col wrapper has NO padding-bottom on its last child
-            (last:pb-0 is on each article), so the container naturally ends at
-            the last article's bottom, and bottom-[5px] on the rail stops 5 px
-            above that — exactly at the last dot's centre.
+            Blue rail   : top-[5px], height animated by Framer Motion.
+                          When activeIndex = 0 → height 0 (already at first dot).
+                          When activeIndex = 1 → height = (dot[1].centre - dot[0].centre).
+                          When activeIndex = 2 → height = (dot[2].centre - dot[0].centre).
+                          When null            → height 0.
           */}
           <motion.div
             variants={containerVariants}
@@ -80,30 +109,61 @@ export function Experience() {
             viewport={{ once: true, margin: "-100px" }}
             className="relative"
           >
-            {/* Single continuous timeline rail — gray, no glow */}
+            {/* ── Layer 1: permanent gray background rail ── */}
             <div
               aria-hidden="true"
-              className="absolute left-[4px] top-[5px] bottom-[5px] w-[2px] bg-zinc-800/80 pointer-events-none"
+              className="absolute left-[4px] top-[5px] bottom-[5px] w-[2px] bg-zinc-800/80 pointer-events-none rounded-full"
             />
 
-            <div className="flex flex-col">
-              {internships.map((intern) => {
+            {/* ── Layer 2: animated blue progress rail ── */}
+            <motion.div
+              aria-hidden="true"
+              className="absolute left-[4px] top-[5px] w-[2px] bg-primary pointer-events-none rounded-full origin-top"
+              animate={{ height: progressHeight }}
+              transition={
+                isReduced
+                  ? { duration: 0 }
+                  : { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+              }
+            />
+
+            {/* ── Articles container (measured) ── */}
+            <div ref={containerRef} className="flex flex-col">
+              {internships.map((intern, index) => {
+                const isActive = activeIndex === index;
                 const isBackend = intern.role.toLowerCase().includes("backend");
 
                 return (
                   <motion.article
                     key={intern.id}
+                    ref={(el) => { articleRefs.current[index] = el as HTMLElement | null; }}
                     variants={itemVariants}
                     tabIndex={0}
-                    className="relative group pb-12 last:pb-0 focus-visible:outline-none"
+                    className="relative pb-12 last:pb-0 focus-visible:outline-none"
+                    onMouseEnter={() => setActiveIndex(index)}
+                    onMouseLeave={() => setActiveIndex(null)}
+                    onFocus={() => setActiveIndex(index)}
+                    onBlur={(e) => {
+                      // Only clear if focus truly left this article
+                      if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                        setActiveIndex(null);
+                      }
+                    }}
                   >
-                    {/* Milestone dot — gray by default, blue only on hover/focus of THIS article */}
+                    {/* Milestone dot */}
                     <span
+                      data-timeline-dot
                       aria-hidden="true"
-                      className="absolute left-0 top-[1px] h-2.5 w-2.5 rounded-full border-2 border-background bg-zinc-600 group-hover:bg-primary group-focus-visible:bg-primary group-hover:ring-4 group-hover:ring-primary/20 group-focus-visible:ring-4 group-focus-visible:ring-primary/20 transition-all duration-500 ease-out shrink-0"
+                      className={[
+                        "absolute left-0 top-[1px] h-2.5 w-2.5 rounded-full border-2 border-background",
+                        "transition-all duration-500 ease-out shrink-0",
+                        isActive
+                          ? "bg-primary ring-4 ring-primary/20"
+                          : "bg-zinc-600",
+                      ].join(" ")}
                     />
 
-                    {/* Content — offset right of the 10 px rail gutter */}
+                    {/* Content */}
                     <div className="pl-6 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 items-start">
 
                       {/* Left: Duration + Company */}
