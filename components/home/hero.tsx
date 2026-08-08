@@ -133,7 +133,7 @@ export function Hero() {
           >
             <div className="relative w-full max-w-sm lg:max-w-none aspect-[4/5] rounded-xl overflow-hidden border border-white/5 bg-zinc-950/40">
               <Image
-                src="/images/profile/anshu-hero.png"
+                src="/images/profile/updated_darkbg_photo1.png"
                 alt="Anshu Mehra"
                 fill
                 priority
