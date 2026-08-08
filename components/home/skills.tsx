@@ -79,9 +79,8 @@ export function Skills() {
                 
                 <div className="flex flex-col gap-6 relative z-10">
                   <div className="flex items-center gap-2">
-                    {/* Pulsing electric blue dot to indicate primary focus */}
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0 animate-pulse" />
-                    <h3 className="text-sm md:text-base font-bold text-foreground uppercase tracking-wider">
+                    <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 group-hover:bg-primary group-focus-visible:bg-primary transition-colors duration-300 shrink-0" />
+                    <h3 className="text-sm md:text-base font-bold text-muted-foreground group-hover:text-foreground group-focus-visible:text-foreground transition-colors duration-300 uppercase tracking-wider">
                       {backendCategory.title}
                     </h3>
                   </div>
@@ -111,8 +110,8 @@ export function Skills() {
                   className="rounded-xl border border-subtle hover:border-strong focus-visible:border-strong bg-surface-elevated p-6 shadow-sm flex flex-col gap-4 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-700 focus-visible:ring-offset-2 focus-visible:ring-offset-background cursor-default outline-none"
                 >
                   <div className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 group-hover:bg-zinc-400 transition-colors shrink-0" />
-                    <h3 className="text-xs md:text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors uppercase tracking-wider">
+                    <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 group-hover:bg-primary group-focus-visible:bg-primary transition-colors duration-300 shrink-0" />
+                    <h3 className="text-xs md:text-sm font-semibold text-muted-foreground group-hover:text-foreground group-focus-visible:text-foreground transition-colors duration-300 uppercase tracking-wider">
                       {databasesCategory.title}
                     </h3>
                   </div>
@@ -138,8 +137,8 @@ export function Skills() {
                   className="rounded-xl border border-subtle hover:border-strong focus-visible:border-strong bg-surface-elevated p-6 shadow-sm flex flex-col gap-4 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-700 focus-visible:ring-offset-2 focus-visible:ring-offset-background cursor-default outline-none"
                 >
                   <div className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 group-hover:bg-zinc-400 transition-colors shrink-0" />
-                    <h3 className="text-xs md:text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors uppercase tracking-wider">
+                    <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 group-hover:bg-primary group-focus-visible:bg-primary transition-colors duration-300 shrink-0" />
+                    <h3 className="text-xs md:text-sm font-semibold text-muted-foreground group-hover:text-foreground group-focus-visible:text-foreground transition-colors duration-300 uppercase tracking-wider">
                       {frontendCategory.title}
                     </h3>
                   </div>
@@ -167,8 +166,8 @@ export function Skills() {
                 className="rounded-xl border border-subtle hover:border-strong focus-visible:border-strong bg-surface-elevated p-6 shadow-sm flex flex-col gap-4 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-700 focus-visible:ring-offset-2 focus-visible:ring-offset-background cursor-default outline-none"
               >
                 <div className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 group-hover:bg-zinc-400 transition-colors shrink-0" />
-                  <h3 className="text-xs md:text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors uppercase tracking-wider">
+                  <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 group-hover:bg-primary group-focus-visible:bg-primary transition-colors duration-300 shrink-0" />
+                  <h3 className="text-xs md:text-sm font-semibold text-muted-foreground group-hover:text-foreground group-focus-visible:text-foreground transition-colors duration-300 uppercase tracking-wider">
                     {toolsCategory.title}
                   </h3>
                 </div>
