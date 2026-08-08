@@ -68,15 +68,15 @@ export function Projects() {
               key={project.id}
               variants={itemVariants}
               tabIndex={0}
-              className="rounded-xl border border-subtle bg-surface-elevated p-8 hover:border-strong transition-all duration-300 hover:scale-[1.002] group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background cursor-default outline-none"
+              className="rounded-xl border border-subtle bg-surface-elevated p-8 hover:border-primary/50 focus-visible:border-primary/50 transition-all duration-500 ease-out hover:scale-[1.002] group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background cursor-default outline-none"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 
                 {/* Left side: Content block */}
                 <div className={project.details ? "lg:col-span-7 flex flex-col justify-between" : "lg:col-span-12 flex flex-col gap-4"}>
                   <div className="flex flex-col gap-3">
-                    <span className="text-[10px] md:text-xs font-mono tracking-widest text-primary uppercase flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                    <span className="text-[10px] md:text-xs font-mono tracking-widest text-muted-foreground group-hover:text-primary group-focus-visible:text-primary uppercase flex items-center gap-2 transition-colors duration-500 ease-out">
+                      <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 group-hover:bg-primary group-focus-visible:bg-primary transition-colors duration-500 ease-out shrink-0" />
                       {project.category}
                     </span>
                     <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors uppercase">
@@ -140,11 +140,11 @@ export function Projects() {
                   key={project.id}
                   variants={itemVariants}
                   tabIndex={0}
-                  className="rounded-xl border border-subtle bg-surface-elevated p-6 hover:border-strong transition-all duration-300 hover:scale-[1.002] flex flex-col justify-between group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background cursor-default outline-none"
+                  className="rounded-xl border border-subtle bg-surface-elevated p-6 hover:border-primary/50 focus-visible:border-primary/50 transition-all duration-500 ease-out hover:scale-[1.002] flex flex-col justify-between group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background cursor-default outline-none"
                 >
                   <div className="flex flex-col gap-3">
-                    <span className="text-[10px] md:text-xs font-mono tracking-widest text-muted-foreground group-hover:text-foreground group-focus-visible:text-foreground transition-colors duration-300 uppercase flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 group-hover:bg-primary group-focus-visible:bg-primary transition-colors duration-300 shrink-0" />
+                    <span className="text-[10px] md:text-xs font-mono tracking-widest text-muted-foreground group-hover:text-primary group-focus-visible:text-primary uppercase flex items-center gap-2 transition-colors duration-500 ease-out">
+                      <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 group-hover:bg-primary group-focus-visible:bg-primary transition-colors duration-500 ease-out shrink-0" />
                       {project.category}
                     </span>
                     <h4 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors uppercase">
