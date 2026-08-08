@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "../layout/container";
 import { Section } from "../layout/section";
 import { internships } from "@/data/experience";
+import { cn } from "@/lib/utils";
 
 export function Experience() {
   const isReduced = useReducedMotion();
@@ -57,8 +58,10 @@ export function Experience() {
             viewport={{ once: true, margin: "-100px" }}
             className="relative flex flex-col"
           >
-            {internships.map((intern) => {
+            {internships.map((intern, index) => {
               const isBackend = intern.role.toLowerCase().includes("backend");
+              const isFirst = index === 0;
+              const isLast = index === internships.length - 1;
               
               return (
                 <motion.article
@@ -67,15 +70,21 @@ export function Experience() {
                   className="relative group pb-12 md:pb-16 last:pb-0"
                 >
                   {/* Timeline Line Segment connecting dots */}
-                  <div className="absolute left-[4px] top-[11px] bottom-0 w-[2px] bg-white/5 group-last:hidden" />
+                  <div
+                    className={cn(
+                      "absolute left-[4px] w-[2px] bg-white/5",
+                      isFirst ? "top-[11px] bottom-0" : isLast ? "top-0 h-[11px]" : "top-0 bottom-0"
+                    )}
+                  />
 
                   {/* Timeline Dot Indicator */}
                   <span
-                    className={`absolute left-0 top-1.5 h-2.5 w-2.5 rounded-full border-2 border-background transition-colors duration-300 ${
+                    className={cn(
+                      "absolute left-0 top-1.5 h-2.5 w-2.5 rounded-full border-2 border-background transition-all duration-300",
                       isBackend
-                        ? "bg-primary group-hover:bg-blue-400"
-                        : "bg-zinc-600 group-hover:bg-zinc-500"
-                    }`}
+                        ? "bg-primary group-hover:bg-blue-400 group-hover:ring-4 group-hover:ring-primary/20"
+                        : "bg-zinc-600 group-hover:bg-zinc-500 group-hover:ring-4 group-hover:ring-zinc-500/20"
+                    )}
                   />
 
                   {/* Content Grid Layout */}

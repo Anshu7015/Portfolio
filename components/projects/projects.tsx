@@ -67,7 +67,8 @@ export function Projects() {
             <motion.article
               key={project.id}
               variants={itemVariants}
-              className="rounded-xl border border-subtle bg-surface-elevated p-8 hover:border-strong transition-all duration-300 hover:scale-[1.005] group"
+              tabIndex={0}
+              className="rounded-xl border border-subtle bg-surface-elevated p-8 hover:border-strong transition-all duration-300 hover:scale-[1.002] group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background cursor-default outline-none"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 
@@ -124,7 +125,7 @@ export function Projects() {
         {/* Tier 2 Supporting Projects */}
         {supportingProjects.length > 0 && (
           <div className="mt-20 md:mt-24">
-            <h3 className="text-sm font-semibold tracking-widest text-foreground uppercase mb-8">
+            <h3 className="text-sm font-semibold tracking-widest text-foreground uppercase mb-5">
               Additional Projects
             </h3>
             <motion.div
@@ -138,11 +139,12 @@ export function Projects() {
                 <motion.article
                   key={project.id}
                   variants={itemVariants}
-                  className="rounded-xl border border-subtle bg-surface-elevated p-6 hover:border-strong transition-all duration-300 hover:scale-[1.005] flex flex-col justify-between group"
+                  tabIndex={0}
+                  className="rounded-xl border border-subtle bg-surface-elevated p-6 hover:border-strong transition-all duration-300 hover:scale-[1.002] flex flex-col justify-between group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background cursor-default outline-none"
                 >
                   <div className="flex flex-col gap-3">
-                    <span className="text-[10px] md:text-xs font-mono tracking-widest text-muted-foreground uppercase flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 shrink-0" />
+                    <span className="text-[10px] md:text-xs font-mono tracking-widest text-muted-foreground group-hover:text-zinc-300 transition-colors uppercase flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 group-hover:bg-zinc-400 transition-colors shrink-0" />
                       {project.category}
                     </span>
                     <h4 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors uppercase">

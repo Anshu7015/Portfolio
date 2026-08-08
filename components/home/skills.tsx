@@ -71,7 +71,8 @@ export function Skills() {
             {backendCategory && (
               <motion.article
                 variants={itemVariants}
-                className="rounded-xl border border-primary/20 bg-surface-elevated p-8 shadow-sm relative overflow-hidden"
+                tabIndex={0}
+                className="rounded-xl border border-primary/20 hover:border-primary/50 focus-visible:border-primary/50 bg-surface-elevated p-8 shadow-sm relative overflow-hidden transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background cursor-default outline-none group"
               >
                 {/* Subtle visual accent corner light highlight */}
                 <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl pointer-events-none" />
@@ -106,11 +107,12 @@ export function Skills() {
               {databasesCategory && (
                 <motion.article
                   variants={itemVariants}
-                  className="rounded-xl border border-subtle bg-surface-elevated p-6 shadow-sm flex flex-col gap-4"
+                  tabIndex={0}
+                  className="rounded-xl border border-subtle hover:border-strong focus-visible:border-strong bg-surface-elevated p-6 shadow-sm flex flex-col gap-4 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-700 focus-visible:ring-offset-2 focus-visible:ring-offset-background cursor-default outline-none"
                 >
                   <div className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 shrink-0" />
-                    <h3 className="text-xs md:text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                    <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 group-hover:bg-zinc-400 transition-colors shrink-0" />
+                    <h3 className="text-xs md:text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors uppercase tracking-wider">
                       {databasesCategory.title}
                     </h3>
                   </div>
@@ -132,11 +134,12 @@ export function Skills() {
               {frontendCategory && (
                 <motion.article
                   variants={itemVariants}
-                  className="rounded-xl border border-subtle bg-surface-elevated p-6 shadow-sm flex flex-col gap-4"
+                  tabIndex={0}
+                  className="rounded-xl border border-subtle hover:border-strong focus-visible:border-strong bg-surface-elevated p-6 shadow-sm flex flex-col gap-4 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-700 focus-visible:ring-offset-2 focus-visible:ring-offset-background cursor-default outline-none"
                 >
                   <div className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 shrink-0" />
-                    <h3 className="text-xs md:text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                    <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 group-hover:bg-zinc-400 transition-colors shrink-0" />
+                    <h3 className="text-xs md:text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors uppercase tracking-wider">
                       {frontendCategory.title}
                     </h3>
                   </div>
@@ -160,11 +163,12 @@ export function Skills() {
             {toolsCategory && (
               <motion.article
                 variants={itemVariants}
-                className="rounded-xl border border-subtle bg-surface-elevated p-6 shadow-sm flex flex-col gap-4"
+                tabIndex={0}
+                className="rounded-xl border border-subtle hover:border-strong focus-visible:border-strong bg-surface-elevated p-6 shadow-sm flex flex-col gap-4 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-700 focus-visible:ring-offset-2 focus-visible:ring-offset-background cursor-default outline-none"
               >
                 <div className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 shrink-0" />
-                  <h3 className="text-xs md:text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                  <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 group-hover:bg-zinc-400 transition-colors shrink-0" />
+                  <h3 className="text-xs md:text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors uppercase tracking-wider">
                     {toolsCategory.title}
                   </h3>
                 </div>
