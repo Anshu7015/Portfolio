@@ -123,7 +123,7 @@ export function Projects() {
 
         {/* Tier 2 Supporting Projects */}
         {supportingProjects.length > 0 && (
-          <div>
+          <div className="mt-20 md:mt-24">
             <h3 className="text-sm font-semibold tracking-widest text-foreground uppercase mb-8">
               Additional Projects
             </h3>

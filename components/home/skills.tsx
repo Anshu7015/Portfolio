@@ -110,7 +110,7 @@ export function Skills() {
                 >
                   <div className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 shrink-0" />
-                    <h3 className="text-xs md:text-sm font-semibold text-foreground uppercase tracking-wider">
+                    <h3 className="text-xs md:text-sm font-semibold text-muted-foreground uppercase tracking-wider">
                       {databasesCategory.title}
                     </h3>
                   </div>
@@ -136,7 +136,7 @@ export function Skills() {
                 >
                   <div className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 shrink-0" />
-                    <h3 className="text-xs md:text-sm font-semibold text-foreground uppercase tracking-wider">
+                    <h3 className="text-xs md:text-sm font-semibold text-muted-foreground uppercase tracking-wider">
                       {frontendCategory.title}
                     </h3>
                   </div>
@@ -164,7 +164,7 @@ export function Skills() {
               >
                 <div className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-zinc-600 shrink-0" />
-                  <h3 className="text-xs md:text-sm font-semibold text-foreground uppercase tracking-wider">
+                  <h3 className="text-xs md:text-sm font-semibold text-muted-foreground uppercase tracking-wider">
                     {toolsCategory.title}
                   </h3>
                 </div>

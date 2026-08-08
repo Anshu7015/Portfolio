@@ -109,7 +109,7 @@ export function Footer() {
             href="https://github.com/Anshu7015"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-zinc-500 hover:text-foreground transition-colors p-1"
+            className="text-zinc-500 hover:text-foreground transition-colors p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
             aria-label="GitHub Profile"
           >
             <GithubIcon className="h-4.5 w-4.5" />
@@ -118,7 +118,7 @@ export function Footer() {
             href="https://www.linkedin.com/in/anshumehra7015"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-zinc-500 hover:text-foreground transition-colors p-1"
+            className="text-zinc-500 hover:text-foreground transition-colors p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
             aria-label="LinkedIn Profile"
           >
             <LinkedinIcon className="h-4.5 w-4.5" />
@@ -127,14 +127,14 @@ export function Footer() {
             href="https://www.instagram.com/anshumehra7015"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-zinc-500 hover:text-foreground transition-colors p-1"
+            className="text-zinc-500 hover:text-foreground transition-colors p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
             aria-label="Instagram Profile"
           >
             <InstagramIcon className="h-4.5 w-4.5" />
           </a>
           <a
             href="mailto:anshumehra0068726@gmail.com"
-            className="text-zinc-500 hover:text-foreground transition-colors p-1"
+            className="text-zinc-500 hover:text-foreground transition-colors p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
             aria-label="Email Anshu"
           >
             <MailIcon className="h-4.5 w-4.5" />

@@ -55,7 +55,7 @@ export function Experience() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="relative border-l border-white/5 pl-6 md:pl-8 space-y-12 md:space-y-16"
+            className="relative flex flex-col"
           >
             {internships.map((intern) => {
               const isBackend = intern.role.toLowerCase().includes("backend");
@@ -64,11 +64,14 @@ export function Experience() {
                 <motion.article
                   key={intern.id}
                   variants={itemVariants}
-                  className="relative group"
+                  className="relative group pb-12 md:pb-16 last:pb-0"
                 >
+                  {/* Timeline Line Segment connecting dots */}
+                  <div className="absolute left-[4px] top-[11px] bottom-0 w-[2px] bg-white/5 group-last:hidden" />
+
                   {/* Timeline Dot Indicator */}
                   <span
-                    className={`absolute -left-[31px] md:-left-[39px] top-1.5 h-3 w-3 rounded-full border-2 border-background transition-colors duration-300 ${
+                    className={`absolute left-0 top-1.5 h-2.5 w-2.5 rounded-full border-2 border-background transition-colors duration-300 ${
                       isBackend
                         ? "bg-primary group-hover:bg-blue-400"
                         : "bg-zinc-600 group-hover:bg-zinc-500"
@@ -76,7 +79,7 @@ export function Experience() {
                   />
 
                   {/* Content Grid Layout */}
-                  <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
+                  <div className="pl-8 md:pl-10 grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
                     
                     {/* Left: Duration and Company Name */}
                     <div className="md:col-span-4 flex flex-col gap-1">

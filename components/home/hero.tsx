@@ -206,7 +206,7 @@ export function Hero() {
                 href="https://github.com/Anshu7015"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors p-1"
+                className="text-muted-foreground hover:text-foreground transition-colors p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
                 aria-label="GitHub Account"
               >
                 <GithubIcon className="h-5 w-5" />
@@ -215,14 +215,14 @@ export function Hero() {
                 href="https://www.linkedin.com/in/anshumehra7015"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors p-1"
+                className="text-muted-foreground hover:text-foreground transition-colors p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
                 aria-label="LinkedIn Profile"
               >
                 <LinkedinIcon className="h-5 w-5" />
               </a>
               <a
                 href="mailto:anshumehra0068726@gmail.com"
-                className="text-muted-foreground hover:text-foreground transition-colors p-1"
+                className="text-muted-foreground hover:text-foreground transition-colors p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
                 aria-label="Email Anshu"
               >
                 <Mail className="h-5 w-5" />
@@ -231,7 +231,7 @@ export function Hero() {
                 href="https://www.instagram.com/anshumehra7015"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground/50 hover:text-foreground/80 transition-colors p-1"
+                className="text-muted-foreground/50 hover:text-foreground/80 transition-colors p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
                 aria-label="Instagram Profile"
               >
                 <InstagramIcon className="h-5 w-5" />

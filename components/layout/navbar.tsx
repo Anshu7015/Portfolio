@@ -16,7 +16,35 @@ const NAV_ITEMS = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
   const triggerRef = useRef<HTMLButtonElement>(null);
+
+  // IntersectionObserver scroll listener to track active section
+  useEffect(() => {
+    const sections = ["work", "experience", "about", "contact"];
+    const observerOptions = {
+      root: null,
+      rootMargin: "-40% 0px -55% 0px", // Trigger when section occupies center viewport
+      threshold: 0,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   // Scroll listener to toggle navbar elevated design
   useEffect(() => {
@@ -73,29 +101,37 @@ export function Navbar() {
         <a
           href="#"
           aria-label="Anshu Mehra Home"
-          className="text-sm font-semibold tracking-widest text-foreground hover:text-primary transition-colors uppercase"
+          className="text-sm font-semibold tracking-widest text-foreground hover:text-primary transition-colors uppercase focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
         >
           Anshu Mehra
         </a>
 
         {/* Desktop Navigation Link Primatives */}
         <nav className="hidden md:flex items-center gap-8">
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {item.label}
-            </a>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const isActive = activeSection === item.href.substring(1);
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                className={cn(
+                  "text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded px-1.5 py-0.5",
+                  isActive
+                    ? "text-primary font-medium"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
 
         {/* Mobile Menu Action Trigger */}
         <button
           ref={triggerRef}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-1.5 text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded transition-colors"
+          className="md:hidden p-1.5 text-muted-foreground hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded transition-colors"
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-menu"
           aria-label="Toggle navigation menu"
@@ -115,16 +151,22 @@ export function Navbar() {
             transition={{ duration: 0.2, ease: "easeInOut" }}
             className="absolute top-full left-0 right-0 h-[calc(100vh-100%)] bg-background/98 z-40 md:hidden flex flex-col justify-start px-6 pt-10 gap-6 border-t border-white/5 overflow-y-auto"
           >
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-lg font-medium text-muted-foreground hover:text-foreground transition-colors py-3 border-b border-white/5"
-              >
-                {item.label}
-              </a>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.href.substring(1);
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    "text-lg font-medium transition-colors py-3 border-b border-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1",
+                    isActive ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </motion.div>
         )}
       </AnimatePresence>
