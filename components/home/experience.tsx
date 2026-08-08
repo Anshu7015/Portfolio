@@ -144,7 +144,6 @@ export function Experience() {
             <div ref={containerRef} className="flex flex-col">
               {internships.map((intern, index) => {
                 const isActive = activeIndex === index;
-                const isBackend = intern.role.toLowerCase().includes("backend");
 
                 return (
                   <motion.article
@@ -181,9 +180,7 @@ export function Experience() {
 
                       {/* Left: Duration + Company */}
                       <div className="md:col-span-4 flex flex-col gap-1">
-                        <span className={`text-[10px] md:text-xs font-mono tracking-widest uppercase ${
-                          isBackend ? "text-primary" : "text-muted-foreground"
-                        }`}>
+                        <span className="text-[10px] md:text-xs font-mono tracking-widest uppercase text-muted-foreground">
                           {intern.duration}
                         </span>
                         <h3 className="text-lg md:text-xl font-bold text-foreground uppercase">
@@ -194,7 +191,7 @@ export function Experience() {
                       {/* Right: Role + Responsibilities */}
                       <div className="md:col-span-8">
                         <h4 className={`text-base md:text-lg font-semibold mb-3 uppercase ${
-                          isBackend ? "text-foreground" : "text-muted-foreground"
+                          isActive ? "text-foreground" : "text-muted-foreground"
                         }`}>
                           {intern.role}
                         </h4>
